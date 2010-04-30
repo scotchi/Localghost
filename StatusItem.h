@@ -25,5 +25,6 @@
 
 - (StatusItem *) init;
 - (void) createMenu;
+- (void) enable:(id)sender;
 
 @end

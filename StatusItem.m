@@ -29,18 +29,23 @@
 - (void) createMenu
 {
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
-    item = [bar statusItemWithLength: NSVariableStatusItemLength];
+    item = [bar statusItemWithLength:NSVariableStatusItemLength];
     [item retain];
  
-    [item setTitle: NSLocalizedString(@"Localghost",@"")];
-    [item setHighlightMode: YES];
+    [item setTitle:NSLocalizedString(@"Localghost", @"")];
+    [item setHighlightMode:YES];
     
-    menu = [[NSMenu alloc] initWithTitle: @""];
+    menu = [[NSMenu alloc] initWithTitle:@""];
 
-    NSMenuItem *enable = [[NSMenuItem alloc] initWithTitle: @"Enabled" action:NULL keyEquivalent:@""];
+    [[menu addItemWithTitle:@"Enabled" action:@selector(enable:) keyEquivalent:@""] setTarget: self];
+    [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
 
-    [menu addItem: enable];
-    [item setMenu: menu];
+    [item setMenu:menu];
+}
+
+- (void) enable: (id) sender
+{
+    printf("sent %i\n", sender);
 }
 
 @end
