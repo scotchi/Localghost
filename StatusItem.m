@@ -37,10 +37,9 @@
     
     menu = [[NSMenu alloc] initWithTitle: @""];
 
-    NSMenuItem *enable = [[NSMenuItem alloc] initWithTitle: @"First" action:NULL keyEquivalent:@""];
+    NSMenuItem *enable = [[NSMenuItem alloc] initWithTitle: @"Enabled" action:NULL keyEquivalent:@""];
 
     [menu addItem: enable];
-
     [item setMenu: menu];
 }
 
