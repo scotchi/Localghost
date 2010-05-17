@@ -21,10 +21,11 @@
 {
     NSStatusItem *item;
     NSMenu *menu;
+    BOOL enabled;
 }
 
 - (StatusItem *) init;
 - (void) createMenu;
-- (void) enable:(id)sender;
-
+- (void) enable: (id) sender;
+- (void) enableEntry: (NSString *) entry;
 @end

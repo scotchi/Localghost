@@ -22,6 +22,9 @@
 - (StatusItem *) init
 {
     [super init];
+
+    enabled = NO;
+    
     [self createMenu];
     return self;
 }
@@ -37,15 +40,28 @@
     
     menu = [[NSMenu alloc] initWithTitle:@""];
 
-    [[menu addItemWithTitle:@"Enabled" action:@selector(enable:) keyEquivalent:@""] setTarget: self];
+    [[menu addItemWithTitle: @"Enabled" action:@selector(enable:) keyEquivalent:@""] setTarget: self];
     [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
 
     [item setMenu:menu];
 }
 
 - (void) enable: (id) sender
+ {
+    if(enabled)
+    {
+        enabled = NO;
+    }
+    else
+    {
+        enabled = YES;
+        [self enableEntry: @"test"];
+    }
+}
+
+- (void) enableEntry: (NSString *) entry
 {
-    printf("sent %i\n", sender);
+    
 }
 
 @end
