@@ -16,12 +16,14 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <SecurityFoundation/SFAuthorization.h>
 
 @interface StatusItem : NSObject
 {
     NSStatusItem *item;
     NSMenu *menu;
     BOOL enabled;
+    SFAuthorization *authorization;
 }
 
 - (StatusItem *) init;
