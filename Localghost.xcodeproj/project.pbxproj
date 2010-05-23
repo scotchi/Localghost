@@ -14,6 +14,7 @@
 		D2B3F76E118A71DF00119AEF /* StatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3F76D118A71DF00119AEF /* StatusItem.m */; };
 		D2B4077911A8F7B100829042 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077811A8F7B100829042 /* SecurityFoundation.framework */; };
 		D2B4078011A911F900829042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077F11A911F900829042 /* Security.framework */; };
+		D2B407CB11A9132A00829042 /* localghost-helper.c in Sources */ = {isa = PBXBuildFile; fileRef = D2B407CA11A9132A00829042 /* localghost-helper.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		D2B3F76D118A71DF00119AEF /* StatusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItem.m; sourceTree = "<group>"; };
 		D2B4077811A8F7B100829042 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = /System/Library/Frameworks/SecurityFoundation.framework; sourceTree = "<absolute>"; };
 		D2B4077F11A911F900829042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		D2B407C411A9130B00829042 /* localghost-helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "localghost-helper"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2B407CA11A9132A00829042 /* localghost-helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "localghost-helper.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,13 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				D2B4077911A8F7B100829042 /* SecurityFoundation.framework in Frameworks */,
 				D2B4078011A911F900829042 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2B407C211A9130B00829042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Localghost.app */,
+				D2B407C411A9130B00829042 /* localghost-helper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +101,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				D2B407CA11A9132A00829042 /* localghost-helper.c */,
 			);
 			name = Localghost;
 			sourceTree = "<group>";
@@ -145,6 +157,22 @@
 			productReference = 8D1107320486CEB800E47090 /* Localghost.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D2B407C311A9130B00829042 /* localghost-helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2B407C811A9132900829042 /* Build configuration list for PBXNativeTarget "localghost-helper" */;
+			buildPhases = (
+				D2B407C111A9130B00829042 /* Sources */,
+				D2B407C211A9130B00829042 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "localghost-helper";
+			productName = "localghost-helper";
+			productReference = D2B407C411A9130B00829042 /* localghost-helper */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -158,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Localghost */,
+				D2B407C311A9130B00829042 /* localghost-helper */,
 			);
 		};
 /* End PBXProject section */
@@ -181,6 +210,14 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				D2B3F76E118A71DF00119AEF /* StatusItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2B407C111A9130B00829042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2B407CB11A9132A00829042 /* localghost-helper.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +300,38 @@
 			};
 			name = Release;
 		};
+		D2B407C611A9130B00829042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "localghost-helper";
+			};
+			name = Debug;
+		};
+		D2B407C711A9130B00829042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = "localghost-helper";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -280,6 +349,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2B407C811A9132900829042 /* Build configuration list for PBXNativeTarget "localghost-helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2B407C611A9130B00829042 /* Debug */,
+				D2B407C711A9130B00829042 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
