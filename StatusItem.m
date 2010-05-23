@@ -17,6 +17,8 @@
 
 #import "StatusItem.h"
 
+#import <SecurityFoundation/SFAuthorization.h>
+
 @implementation StatusItem
 
 - (StatusItem *) init
@@ -61,7 +63,12 @@
 
 - (void) enableEntry: (NSString *) entry
 {
-    
+    SFAuthorization *auth = [SFAuthorization authorization];
+    char *args[] = { "/tmp/foo", NULL };
+    AuthorizationExecuteWithPrivileges([auth authorizationRef],
+                                       "/usr/bin/touch",
+                                       kAuthorizationFlagDefaults,
+                                       args, NULL);
 }
 
 @end

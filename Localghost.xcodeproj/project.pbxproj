@@ -12,6 +12,8 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		D2B3F76E118A71DF00119AEF /* StatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3F76D118A71DF00119AEF /* StatusItem.m */; };
+		D2B4077911A8F7B100829042 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077811A8F7B100829042 /* SecurityFoundation.framework */; };
+		D2B4078011A911F900829042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077F11A911F900829042 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		8D1107320486CEB800E47090 /* Localghost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localghost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2B3F76C118A71DF00119AEF /* StatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItem.h; sourceTree = "<group>"; };
 		D2B3F76D118A71DF00119AEF /* StatusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItem.m; sourceTree = "<group>"; };
+		D2B4077811A8F7B100829042 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = /System/Library/Frameworks/SecurityFoundation.framework; sourceTree = "<absolute>"; };
+		D2B4077F11A911F900829042 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				D2B4077911A8F7B100829042 /* SecurityFoundation.framework in Frameworks */,
+				D2B4078011A911F900829042 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +57,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2B4077F11A911F900829042 /* Security.framework */,
+				D2B4077811A8F7B100829042 /* SecurityFoundation.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
