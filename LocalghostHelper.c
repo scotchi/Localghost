@@ -31,11 +31,12 @@
     fprintf(hosts, "%s\n", line)
 
 #define PRINT_USAGE \
-    fprintf(stderr, "Must be called with --enable or --disable and a host name\n")
+    fprintf(stderr, "Must be called with --enable or --disable and a host name\n"); \
+    return 1;
 
 static void set_enabled(const char *host, int enabled)
 {
-    FILE *hosts;
+    FILE *hosts = 0;
     char buffer[BUFFER_SIZE];
     char *content = 0;
     size_t content_size = 0;
