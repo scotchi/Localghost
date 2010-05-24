@@ -45,6 +45,7 @@
 
 - (IBAction) addHostOk: (id) sender
 {
+    // [addHostTextField stringValue];
     [self addHostCancel: sender];
 }
 

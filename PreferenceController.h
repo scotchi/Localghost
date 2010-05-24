@@ -19,9 +19,8 @@
 
 @interface PreferenceController : NSWindowController
 {
-    IBOutlet NSButton *addHostButton;
-    IBOutlet NSButton *removeHostButton;
     IBOutlet NSWindow *addHostSheet;
+    IBOutlet NSTextField *addHostTextField;
 }
 
 - (IBAction) addHost: (id) sender;
