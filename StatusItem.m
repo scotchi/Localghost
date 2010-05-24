@@ -53,7 +53,7 @@
 {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *helperPath = [bundle pathForAuxiliaryExecutable: @"LocalghostHelper"];
-    const char *arguments[] = { 0, 0, 0 };
+    const char *arguments[] = { NULL, NULL, NULL };
 
     enabled = !enabled;
 

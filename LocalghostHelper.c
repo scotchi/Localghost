@@ -44,12 +44,12 @@
 
 static void set_enabled(const char *host, int enabled)
 {
-    FILE *hosts = 0;
+    FILE *hosts = NULL;
     char buffer[BUFFER_SIZE];
-    char *content = 0;
+    char *content = NULL;
     size_t content_size = 0;
     size_t bytes_read = 0;
-    char *line = 0;
+    char *line = NULL;
     BOOL found = FALSE;
 
     hosts = fopen(HOSTS_FILE, "r+");
@@ -110,8 +110,8 @@ static void set_enabled(const char *host, int enabled)
 
 int main(int argc, char *argv[])
 {
-    const char *mode = 0;
-    const char *host = 0;
+    const char *mode = NULL;
+    const char *host = NULL;
 
     if(argc != 3)
     {
