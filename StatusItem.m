@@ -48,9 +48,11 @@
 
     [[menu addItemWithTitle: @"Enabled" action:@selector(enable:) keyEquivalent:@""]
         setTarget: self];
-    [[menu addItemWithTitle: @"Preferences" action:@selector(showPreferences:) keyEquivalent:@""]
+    [menu addItem: [NSMenuItem separatorItem]];
+    [[menu addItemWithTitle: @"Preferences..." action:@selector(showPreferences:) keyEquivalent: @""]
         setTarget: self];
-    [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
+    [menu addItem: [NSMenuItem separatorItem]];
+    [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent: @""];
 
     [item setMenu:menu];
 }
