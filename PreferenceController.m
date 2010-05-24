@@ -43,4 +43,15 @@
 
 }
 
+- (IBAction) addHostOk: (id) sender
+{
+    [self addHostCancel: sender];
+}
+
+- (IBAction) addHostCancel: (id) sender
+{
+    [NSApp endSheet: addHostSheet];
+    [addHostSheet orderOut: sender];
+}
+
 @end
