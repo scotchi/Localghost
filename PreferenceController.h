@@ -17,21 +17,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class SFAuthorization;
-@class PreferenceController;
-
-@interface StatusItem : NSObject
+@interface PreferenceController : NSWindowController
 {
-    NSStatusItem *item;
-    NSMenu *menu;
-    BOOL enabled;
-    SFAuthorization *authorization;
-    PreferenceController *preferences;
+    IBOutlet NSButton *addHostButton;
+    IBOutlet NSButton *removeHostButton;
 }
 
-- (StatusItem *) init;
-- (void) createMenu;
-- (void) enable: (id) sender;
-- (void) showPreferences: (id) sender;
+- (IBAction) addHost: (id) sender;
+- (IBAction) removeHost: (id) sender;
 
 @end

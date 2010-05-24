@@ -16,6 +16,9 @@
  */
 
 #import "StatusItem.h"
+#import "PreferenceController.h"
+
+#import <SecurityFoundation/SFAuthorization.h>
 
 @implementation StatusItem
 
@@ -43,7 +46,10 @@
     
     menu = [[NSMenu alloc] initWithTitle:@""];
 
-    [[menu addItemWithTitle: @"Enabled" action:@selector(enable:) keyEquivalent:@""] setTarget: self];
+    [[menu addItemWithTitle: @"Enabled" action:@selector(enable:) keyEquivalent:@""]
+        setTarget: self];
+    [[menu addItemWithTitle: @"Preferences" action:@selector(showPreferences:) keyEquivalent:@""]
+        setTarget: self];
     [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
 
     [item setMenu:menu];
@@ -65,6 +71,15 @@
                                        kAuthorizationFlagDefaults,
                                        (char * const *) arguments,
                                        NULL);
+}
+
+- (void) showPreferences: (id) sender
+{
+    if(!preferences)
+    {
+        preferences = [[PreferenceController alloc] init];
+        [preferences showWindow:self];
+    }
 }
 
 @end

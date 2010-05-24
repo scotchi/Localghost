@@ -15,23 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Cocoa/Cocoa.h>
+#import "PreferenceController.h"
 
-@class SFAuthorization;
-@class PreferenceController;
+@implementation PreferenceController
 
-@interface StatusItem : NSObject
+- (id) init
 {
-    NSStatusItem *item;
-    NSMenu *menu;
-    BOOL enabled;
-    SFAuthorization *authorization;
-    PreferenceController *preferences;
+    if(![super initWithWindowNibName: @"Preferences"])
+    {
+        return nil;
+    }
+
+    return self;
 }
 
-- (StatusItem *) init;
-- (void) createMenu;
-- (void) enable: (id) sender;
-- (void) showPreferences: (id) sender;
+- (IBAction) addHost: (id) sender
+{
+    NSLog(@"addHost");
+}
+
+- (IBAction) removeHost: (id) sender
+{
+    NSLog(@"removeHost");
+}
 
 @end
