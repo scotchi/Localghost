@@ -31,12 +31,16 @@
 
 - (IBAction) addHost: (id) sender
 {
-    NSLog(@"addHost");
+    [NSApp beginSheet: addHostSheet
+           modalForWindow: [self window]
+           modalDelegate: nil
+           didEndSelector: NULL
+           contextInfo: NULL];
 }
 
 - (IBAction) removeHost: (id) sender
 {
-    NSLog(@"removeHost");
+
 }
 
 @end

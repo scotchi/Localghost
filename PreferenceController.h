@@ -21,6 +21,7 @@
 {
     IBOutlet NSButton *addHostButton;
     IBOutlet NSButton *removeHostButton;
+    IBOutlet NSWindow *addHostSheet;
 }
 
 - (IBAction) addHost: (id) sender;
