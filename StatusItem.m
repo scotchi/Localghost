@@ -80,8 +80,9 @@
     if(!preferences)
     {
         preferences = [[PreferenceController alloc] init];
-        [preferences showWindow:self];
     }
+
+    [preferences showWindow: self];
 }
 
 @end
