@@ -20,6 +20,8 @@
 @interface PreferenceController : NSWindowController
 {
     NSMutableArray *hosts;
+    IBOutlet NSTableView *hostsTable;
+    IBOutlet NSArrayController *hostsController;
     IBOutlet NSWindow *addHostSheet;
     IBOutlet NSTextField *addHostTextField;
 }

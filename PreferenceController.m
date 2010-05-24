@@ -28,7 +28,6 @@
     }
 
     hosts = [[NSMutableArray alloc] init];
-    [hosts retain];
     [hosts addObject: [[Host alloc] initWithName: @"scotchi.net"]];
 
     return self;
@@ -56,7 +55,7 @@
 
 - (IBAction) addHostOk: (id) sender
 {
-    // [addHostTextField stringValue];
+    [hostsController addObject: [[Host alloc] initWithName: [addHostTextField stringValue]]];
     [self addHostCancel: sender];
 }
 
