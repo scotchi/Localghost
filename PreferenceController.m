@@ -16,6 +16,7 @@
  */
 
 #import "PreferenceController.h"
+#import "Host.h"
 
 @implementation PreferenceController
 
@@ -26,7 +27,17 @@
         return nil;
     }
 
+    hosts = [[NSMutableArray alloc] init];
+    [hosts retain];
+    [hosts addObject: [[Host alloc] initWithName: @"scotchi.net"]];
+
     return self;
+}
+
+- (void) dealloc
+{
+    hosts = nil;
+    [super dealloc];
 }
 
 - (IBAction) addHost: (id) sender

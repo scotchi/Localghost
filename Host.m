@@ -15,18 +15,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <Cocoa/Cocoa.h>
+#import "Host.h"
 
-@interface PreferenceController : NSWindowController
+@implementation Host
+
+- (id) init
 {
-    NSMutableArray *hosts;
-    IBOutlet NSWindow *addHostSheet;
-    IBOutlet NSTextField *addHostTextField;
+    [super init];
+    name = @"";
+    return self;
 }
 
-- (IBAction) addHost: (id) sender;
-- (IBAction) removeHost: (id) sender;
-- (IBAction) addHostOk: (id) sender;
-- (IBAction) addHostCancel: (id) sender;
+- (void) dealloc
+{
+    [name release];
+    [super dealloc];
+}
+
+- (id) initWithName: (NSString *) n;
+{
+    name = n;
+    return self;
+}
+
+@synthesize name;
 
 @end

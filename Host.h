@@ -17,16 +17,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferenceController : NSWindowController
+@interface Host : NSObject
 {
-    NSMutableArray *hosts;
-    IBOutlet NSWindow *addHostSheet;
-    IBOutlet NSTextField *addHostTextField;
+    NSString *name;
 }
 
-- (IBAction) addHost: (id) sender;
-- (IBAction) removeHost: (id) sender;
-- (IBAction) addHostOk: (id) sender;
-- (IBAction) addHostCancel: (id) sender;
+- (id) initWithName: (NSString *) n;
+
+@property (readwrite, copy) NSString *name;
 
 @end
