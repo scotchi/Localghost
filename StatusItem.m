@@ -50,25 +50,21 @@
 }
 
 - (void) enable: (id) sender
- {
-    if(enabled)
-    {
-        enabled = NO;
-    }
-    else
-    {
-        enabled = YES;
-        [self enableEntry: @"test"];
-    }
-}
-
-- (void) enableEntry: (NSString *) entry
 {
-    char *args[] = { "/tmp/foo", NULL };
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *helperPath = [bundle pathForAuxiliaryExecutable: @"LocalghostHelper"];
+    const char *arguments[] = { 0, 0, 0 };
+
+    enabled = !enabled;
+
+    arguments[0] = enabled ? "--enable" : "--disable";
+    arguments[1] = [@"scotchi.net" UTF8String];
+
     AuthorizationExecuteWithPrivileges([authorization authorizationRef],
-                                       "/usr/bin/touch",
+                                       [helperPath UTF8String],
                                        kAuthorizationFlagDefaults,
-                                       args, NULL);
+                                       (char * const *) arguments,
+                                       NULL);
 }
 
 @end
