@@ -15,7 +15,31 @@
 		D2B4077911A8F7B100829042 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077811A8F7B100829042 /* SecurityFoundation.framework */; };
 		D2B4078011A911F900829042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077F11A911F900829042 /* Security.framework */; };
 		D2B407CB11A9132A00829042 /* LocalghostHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = D2B407CA11A9132A00829042 /* LocalghostHelper.c */; };
+		D2B408C911A9FCAD00829042 /* LocalghostHelper in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2B407C411A9130B00829042 /* LocalghostHelper */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2B4083411A9CEC100829042 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2B407C311A9130B00829042 /* LocalghostHelper */;
+			remoteInfo = LocalghostHelper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2B4084311A9D02C00829042 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				D2B408C911A9FCAD00829042 /* LocalghostHelper in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -146,10 +170,12 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				D2B4084311A9D02C00829042 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D2B4083511A9CEC100829042 /* PBXTargetDependency */,
 			);
 			name = Localghost;
 			productInstallPath = "$(HOME)/Applications";
@@ -222,6 +248,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2B4083511A9CEC100829042 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2B407C311A9130B00829042 /* LocalghostHelper */;
+			targetProxy = D2B4083411A9CEC100829042 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
