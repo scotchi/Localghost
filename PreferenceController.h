@@ -33,5 +33,6 @@
 - (IBAction) addHostCancel: (id) sender;
 - (void) save;
 - (void) load;
+- (void) activateHosts: (NSDictionary *) allHosts;
 
 @end

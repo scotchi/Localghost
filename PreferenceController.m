@@ -21,6 +21,9 @@
 #define PREFERENCES_FILE \
     [@"~/Library/Preferences/Localghost.plist" stringByExpandingTildeInPath]
 
+#define HOSTS_FILE \
+    @"/etc/hosts"
+
 @implementation PreferenceController
 
 @synthesize hosts;
@@ -86,12 +89,46 @@
 {
     NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile: PREFERENCES_FILE];
     NSArray *values = [preferences objectForKey: @"hosts"];
+    NSMutableDictionary *hostsDict = [[NSMutableDictionary alloc] init];
 
     hosts = [[NSMutableArray alloc] init];
 
     for(NSUInteger i = 0; values && i < [values count]; i++)
     {
-        [hosts addObject: [[Host alloc] initWithName: [values objectAtIndex: i]]];
+        NSString *name = [values objectAtIndex: i];
+        Host *host = [[Host alloc] initWithName: name];
+        [hosts addObject: host];
+        [hostsDict setValue: host forKey: name];
+    }
+
+    [self activateHosts: hostsDict];
+}
+
+- (void) activateHosts: (NSDictionary *) allHosts;
+{
+    NSArray *lines = [[NSString stringWithContentsOfFile: HOSTS_FILE
+                                encoding: NSUTF8StringEncoding
+                                error: nil]
+                         componentsSeparatedByString: @"\n"];
+
+    NSArray *keys = [allHosts allKeys];
+
+    for(NSUInteger i = 0; i < [lines count]; i++)
+    {
+        NSString *line = [lines objectAtIndex: i];
+
+        if([line length] > 0 && [line characterAtIndex: 0] != '#')
+        {
+            for(NSUInteger j = 0; j < [keys count]; j++)
+            {
+                NSString *key = [keys objectAtIndex: j];
+
+                if([line rangeOfString: key].location != NSNotFound)
+                {
+                    [[allHosts objectForKey: key] setActive: YES];
+                }
+            }
+        }
     }
 }
 
