@@ -46,14 +46,19 @@
     menu = [[NSMenu alloc] initWithTitle:@""];
 
     hostsSeparator = [NSMenuItem separatorItem];
-        [menu addItem: hostsSeparator];
-    [[menu addItemWithTitle: @"Preferences..." action:@selector(showPreferences:) keyEquivalent: @""]
+    [menu addItem: hostsSeparator];
+
+    [[menu addItemWithTitle: @"Preferences..."
+           action:@selector(showPreferences:)
+           keyEquivalent: @""]
         setTarget: self];
+
     [menu addItem: [NSMenuItem separatorItem]];
-    [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent: @""];
+    [menu addItemWithTitle: @"Quit"
+          action:@selector(terminate:)
+          keyEquivalent: @""];
 
     [item setMenu:menu];
-
     [menu setDelegate: self];
 
     hostsMenuItems = [[NSMutableArray alloc] init];
@@ -74,7 +79,7 @@
     {
         Host *host = [hosts objectAtIndex: i];
         NSMenuItem *menuItem = [menu insertItemWithTitle: [host name]
-                                     action: @selector(enable:)
+                                     action: @selector(hostSelected:)
                                      keyEquivalent: @""
                                      atIndex: [menu indexOfItem: hostsSeparator]];
         NSInteger state = [host active] ? NSOnState : NSOffState;
@@ -84,7 +89,7 @@
     }
 }
 
-- (void) enable: (id) sender
+- (void) hostSelected: (id) sender
 {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *helperPath = [bundle pathForAuxiliaryExecutable: @"LocalghostHelper"];

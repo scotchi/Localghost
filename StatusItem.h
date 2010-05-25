@@ -34,7 +34,7 @@
 - (StatusItem *) init;
 - (void) createMenu;
 - (void) menuWillOpen: (NSMenu *) m;
-- (void) enable: (id) sender;
+- (void) hostSelected: (id) sender;
 - (PreferenceController *) initPreferences;
 - (void) showPreferences: (id) sender;
 
