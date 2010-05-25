@@ -18,6 +18,9 @@
 #import "PreferenceController.h"
 #import "Host.h"
 
+#define PREFERENCES_FILE \
+    [@"~/Library/Preferences/Localghost.plist" stringByExpandingTildeInPath]
+
 @implementation PreferenceController
 
 - (id) init
@@ -27,15 +30,13 @@
         return nil;
     }
 
-    hosts = [[NSMutableArray alloc] init];
-    [hosts addObject: [[Host alloc] initWithName: @"scotchi.net"]];
+    [self load];
 
     return self;
 }
 
 - (void) dealloc
 {
-    hosts = nil;
     [super dealloc];
 }
 
@@ -51,6 +52,7 @@
 - (IBAction) addHostOk: (id) sender
 {
     [hostsController addObject: [[Host alloc] initWithName: [addHostTextField stringValue]]];
+    [self save];
     [self addHostCancel: sender];
 }
 
@@ -58,6 +60,33 @@
 {
     [NSApp endSheet: addHostSheet];
     [addHostSheet orderOut: sender];
+}
+
+- (void) save
+{
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+
+    for(NSUInteger i = 0; i < [hosts count]; i++)
+    {
+        [values addObject: [[hosts objectAtIndex: i] name]];
+    }
+
+    if(![values writeToFile: PREFERENCES_FILE  atomically: NO])
+    {
+        NSLog(@"Could not save to %s", PREFERENCES_FILE);
+    }
+}
+
+- (void) load
+{
+    NSArray *values = [NSArray arrayWithContentsOfFile: PREFERENCES_FILE];
+
+    hosts = [[NSMutableArray alloc] init];
+
+    for(NSUInteger i = 0; i < [values count]; i++)
+    {
+        [hosts addObject: [[Host alloc] initWithName: [values objectAtIndex: i]]];
+    }
 }
 
 @end

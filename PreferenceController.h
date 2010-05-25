@@ -29,5 +29,7 @@
 - (IBAction) addHost: (id) sender;
 - (IBAction) addHostOk: (id) sender;
 - (IBAction) addHostCancel: (id) sender;
+- (void) save;
+- (void) load;
 
 @end
