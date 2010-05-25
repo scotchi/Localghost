@@ -27,11 +27,14 @@
     BOOL enabled;
     SFAuthorization *authorization;
     PreferenceController *preferences;
+    NSMutableArray *hostsMenuItems;
 }
 
 - (StatusItem *) init;
 - (void) createMenu;
+- (void) menuWillOpen: (NSMenu *) m;
 - (void) enable: (id) sender;
+- (PreferenceController *) initPreferences;
 - (void) showPreferences: (id) sender;
 
 @end

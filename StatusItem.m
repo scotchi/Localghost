@@ -30,7 +30,7 @@
     [authorization retain];
 
     enabled = NO;
-    
+
     [self createMenu];
     return self;
 }
@@ -53,8 +53,32 @@
         setTarget: self];
     [menu addItem: [NSMenuItem separatorItem]];
     [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent: @""];
-
     [item setMenu:menu];
+
+    [menu setDelegate: self];
+
+    hostsMenuItems = [[NSMutableArray alloc] init];
+}
+
+- (void) menuWillOpen: (NSMenu *) m
+{
+    for(NSUInteger i = 0; i < [hostsMenuItems count]; i++)
+    {
+        [menu removeItem: [hostsMenuItems objectAtIndex: i]];
+    }
+
+    [hostsMenuItems removeAllObjects];
+
+    NSArray *hosts = [[self initPreferences] hosts];
+
+    for(NSUInteger i = 0; i < [hosts count]; i++)
+    {
+        NSMenuItem *menuItem = [menu addItemWithTitle: [[hosts objectAtIndex: i] name]
+                                     action: @selector(enable:)
+                                     keyEquivalent: @""];
+        [menuItem setTarget: self];
+        [hostsMenuItems addObject: menuItem];
+    }
 }
 
 - (void) enable: (id) sender
@@ -75,14 +99,20 @@
                                        NULL);
 }
 
-- (void) showPreferences: (id) sender
+- (PreferenceController *) initPreferences
 {
     if(!preferences)
     {
         preferences = [[PreferenceController alloc] init];
+        [preferences retain];
     }
 
-    [preferences showWindow: self];
+    return preferences;
+}
+
+- (void) showPreferences: (id) sender
+{
+    [[self initPreferences] showWindow:self];
 }
 
 @end

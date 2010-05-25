@@ -26,6 +26,8 @@
     IBOutlet NSTextField *addHostTextField;
 }
 
+@property (retain) NSArray *hosts;
+
 - (IBAction) addHost: (id) sender;
 - (IBAction) addHostOk: (id) sender;
 - (IBAction) addHostCancel: (id) sender;

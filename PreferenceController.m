@@ -23,6 +23,8 @@
 
 @implementation PreferenceController
 
+@synthesize hosts;
+
 - (id) init
 {
     if(![super initWithWindowNibName: @"Preferences"])
