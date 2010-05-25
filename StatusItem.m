@@ -16,6 +16,7 @@
  */
 
 #import "StatusItem.h"
+#import "Host.h"
 #import "PreferenceController.h"
 
 #import <SecurityFoundation/SFAuthorization.h>
@@ -28,8 +29,6 @@
 
     authorization = [SFAuthorization authorization];
     [authorization retain];
-
-    enabled = NO;
 
     [self createMenu];
     return self;
@@ -45,14 +44,18 @@
     [item setHighlightMode: YES];
     
     menu = [[NSMenu alloc] initWithTitle:@""];
+
     hostsSeparator = [NSMenuItem separatorItem];
         [menu addItem: hostsSeparator];
     [[menu addItemWithTitle: @"Preferences..." action:@selector(showPreferences:) keyEquivalent: @""]
         setTarget: self];
     [menu addItem: [NSMenuItem separatorItem]];
     [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent: @""];
+
     [item setMenu:menu];
+
     [menu setDelegate: self];
+
     hostsMenuItems = [[NSMutableArray alloc] init];
 }
 
@@ -69,10 +72,13 @@
 
     for(NSUInteger i = 0; i < [hosts count]; i++)
     {
-        NSMenuItem *menuItem = [menu insertItemWithTitle: [[hosts objectAtIndex: i] name]
+        Host *host = [hosts objectAtIndex: i];
+        NSMenuItem *menuItem = [menu insertItemWithTitle: [host name]
                                      action: @selector(enable:)
                                      keyEquivalent: @""
                                      atIndex: [menu indexOfItem: hostsSeparator]];
+        NSInteger state = [host active] ? NSOnState : NSOffState;
+        [menuItem setState: state];
         [menuItem setTarget: self];
         [hostsMenuItems addObject: menuItem];
     }
@@ -84,10 +90,23 @@
     NSString *helperPath = [bundle pathForAuxiliaryExecutable: @"LocalghostHelper"];
     const char *arguments[] = { NULL, NULL, NULL };
 
-    enabled = !enabled;
+    NSArray *hosts = [preferences hosts];
+    BOOL active = NO;
 
-    arguments[0] = enabled ? "--enable" : "--disable";
-    arguments[1] = [@"scotchi.net" UTF8String];
+    for(NSUInteger i = 0; i < [hosts count]; i++)
+    {
+        Host *host = [hosts objectAtIndex: i];
+
+        if([[sender title] compare: [host name]] == NSOrderedSame)
+        {
+            active = ![host active];
+            [host setActive: active];
+            break;
+        }
+    }
+
+    arguments[0] = active ? "--enable" : "--disable";
+    arguments[1] = [[sender title] UTF8String];
 
     AuthorizationExecuteWithPrivileges([authorization authorizationRef],
                                        [helperPath UTF8String],

@@ -19,10 +19,14 @@
 
 @implementation Host
 
+@synthesize name;
+@synthesize active;
+
 - (id) init
 {
     [super init];
     name = @"";
+    active = NO;
     return self;
 }
 
@@ -37,7 +41,5 @@
     name = n;
     return self;
 }
-
-@synthesize name;
 
 @end
