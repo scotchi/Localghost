@@ -27,6 +27,7 @@
     BOOL enabled;
     SFAuthorization *authorization;
     PreferenceController *preferences;
+    NSMenuItem *hostsSeparator;
     NSMutableArray *hostsMenuItems;
 }
 

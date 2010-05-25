@@ -41,22 +41,18 @@
     item = [bar statusItemWithLength:NSVariableStatusItemLength];
     [item retain];
  
-    [item setTitle:NSLocalizedString(@"Localghost", @"")];
-    [item setHighlightMode:YES];
+    [item setTitle: NSLocalizedString(@"Localghost", @"")];
+    [item setHighlightMode: YES];
     
     menu = [[NSMenu alloc] initWithTitle:@""];
-
-    [[menu addItemWithTitle: @"Enabled" action:@selector(enable:) keyEquivalent:@""]
-        setTarget: self];
-    [menu addItem: [NSMenuItem separatorItem]];
+    hostsSeparator = [NSMenuItem separatorItem];
+        [menu addItem: hostsSeparator];
     [[menu addItemWithTitle: @"Preferences..." action:@selector(showPreferences:) keyEquivalent: @""]
         setTarget: self];
     [menu addItem: [NSMenuItem separatorItem]];
     [menu addItemWithTitle: @"Quit" action:@selector(terminate:) keyEquivalent: @""];
     [item setMenu:menu];
-
     [menu setDelegate: self];
-
     hostsMenuItems = [[NSMutableArray alloc] init];
 }
 
@@ -73,9 +69,10 @@
 
     for(NSUInteger i = 0; i < [hosts count]; i++)
     {
-        NSMenuItem *menuItem = [menu addItemWithTitle: [[hosts objectAtIndex: i] name]
+        NSMenuItem *menuItem = [menu insertItemWithTitle: [[hosts objectAtIndex: i] name]
                                      action: @selector(enable:)
-                                     keyEquivalent: @""];
+                                     keyEquivalent: @""
+                                     atIndex: [menu indexOfItem: hostsSeparator]];
         [menuItem setTarget: self];
         [hostsMenuItems addObject: menuItem];
     }
