@@ -71,7 +71,10 @@
         [values addObject: [[hosts objectAtIndex: i] name]];
     }
 
-    if(![values writeToFile: PREFERENCES_FILE  atomically: NO])
+    NSMutableDictionary *preferences = [[NSMutableDictionary alloc] init];
+    [preferences setObject: values forKey: @"hosts" ];
+
+    if(![preferences writeToFile: PREFERENCES_FILE atomically: YES])
     {
         NSLog(@"Could not save to %s", PREFERENCES_FILE);
     }
@@ -79,11 +82,12 @@
 
 - (void) load
 {
-    NSArray *values = [NSArray arrayWithContentsOfFile: PREFERENCES_FILE];
+    NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile: PREFERENCES_FILE];
+    NSArray *values = [preferences objectForKey: @"hosts"];
 
     hosts = [[NSMutableArray alloc] init];
 
-    for(NSUInteger i = 0; i < [values count]; i++)
+    for(NSUInteger i = 0; values && i < [values count]; i++)
     {
         [hosts addObject: [[Host alloc] initWithName: [values objectAtIndex: i]]];
     }
