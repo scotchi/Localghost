@@ -27,7 +27,6 @@
 }
 
 - (IBAction) addHost: (id) sender;
-- (IBAction) removeHost: (id) sender;
 - (IBAction) addHostOk: (id) sender;
 - (IBAction) addHostCancel: (id) sender;
 

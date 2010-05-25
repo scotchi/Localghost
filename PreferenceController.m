@@ -48,11 +48,6 @@
            contextInfo: NULL];
 }
 
-- (IBAction) removeHost: (id) sender
-{
-
-}
-
 - (IBAction) addHostOk: (id) sender
 {
     [hostsController addObject: [[Host alloc] initWithName: [addHostTextField stringValue]]];
