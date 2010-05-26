@@ -19,7 +19,7 @@
 #import "Host.h"
 
 #define PREFERENCES_FILE \
-    [@"~/Library/Preferences/Localghost.plist" stringByExpandingTildeInPath]
+    [@"~/Library/Preferences/net.scotchi.Localghost.plist" stringByExpandingTildeInPath]
 
 #define HOSTS_FILE \
     @"/etc/hosts"
@@ -91,7 +91,7 @@
     }
 
     NSMutableDictionary *preferences = [[NSMutableDictionary alloc] init];
-    [preferences setObject: values forKey: @"hosts" ];
+    [preferences setObject: values forKey: @"Hosts" ];
     [preferences setObject: (openOnLoginState == NSOnState ? @"1" : @"0")
                  forKey: @"OpenOnLogin"];
 
@@ -107,7 +107,7 @@
 
     // Read the HostsList
 
-    NSArray *values = [preferences objectForKey: @"hosts"];
+    NSArray *values = [preferences objectForKey: @"Hosts"];
     NSMutableDictionary *hostsDict = [[NSMutableDictionary alloc] init];
 
     hosts = [[NSMutableArray alloc] init];
