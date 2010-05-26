@@ -33,6 +33,7 @@
 
 - (StatusItem *) init;
 - (void) createMenu;
+- (NSImage *) image;
 - (void) menuWillOpen: (NSMenu *) m;
 - (void) hostSelected: (id) sender;
 - (PreferenceController *) initPreferences;

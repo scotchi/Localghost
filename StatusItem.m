@@ -39,8 +39,7 @@
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     item = [bar statusItemWithLength:NSVariableStatusItemLength];
     [item retain];
- 
-    [item setTitle: NSLocalizedString(@"Localghost", @"")];
+    [item setImage: [self image]];
     [item setHighlightMode: YES];
     
     menu = [[NSMenu alloc] initWithTitle:@""];
@@ -62,6 +61,19 @@
     [menu setDelegate: self];
 
     hostsMenuItems = [[NSMutableArray alloc] init];
+}
+
+- (NSImage *) image
+{
+    NSImage *image = [NSImage imageNamed: @"Localghost.icns"];
+
+    NSSize size;
+    size.height = 22;
+    size.width = 22;
+
+    [image setSize: size];
+
+    return image;
 }
 
 - (void) menuWillOpen: (NSMenu *) m
