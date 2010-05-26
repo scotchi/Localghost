@@ -15,10 +15,11 @@
 		D2B4077911A8F7B100829042 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077811A8F7B100829042 /* SecurityFoundation.framework */; };
 		D2B4078011A911F900829042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077F11A911F900829042 /* Security.framework */; };
 		D2B407CB11A9132A00829042 /* LocalghostHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = D2B407CA11A9132A00829042 /* LocalghostHelper.c */; };
-		D2B408C911A9FCAD00829042 /* LocalghostHelper in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2B407C411A9130B00829042 /* LocalghostHelper */; };
+		D2B408C911A9FCAD00829042 /* LocalghostHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = D2B407C411A9130B00829042 /* LocalghostHelper */; };
 		D2B408E611AA1C5200829042 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B408E511AA1C5200829042 /* Preferences.xib */; };
 		D2B408EF11AA1D3D00829042 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B408EE11AA1D3D00829042 /* PreferenceController.m */; };
 		D2B4093311AA7EA000829042 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4093211AA7EA000829042 /* Host.m */; };
+		D2B40A8B11AC9E9000829042 /* Localghost.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2B40A8A11AC9E9000829042 /* Localghost.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +33,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D2B4084311A9D02C00829042 /* CopyFiles */ = {
+		D2B4084311A9D02C00829042 /* Copy Executables */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				D2B408C911A9FCAD00829042 /* LocalghostHelper in CopyFiles */,
+				D2B408C911A9FCAD00829042 /* LocalghostHelper in Copy Executables */,
 			);
+			name = "Copy Executables";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -66,6 +68,7 @@
 		D2B408EE11AA1D3D00829042 /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
 		D2B4093111AA7EA000829042 /* Host.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Host.h; sourceTree = "<group>"; };
 		D2B4093211AA7EA000829042 /* Host.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Host.m; sourceTree = "<group>"; };
+		D2B40A8A11AC9E9000829042 /* Localghost.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Localghost.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,7 @@
 		29B97314FDCFA39411CA2CEA /* Localghost */ = {
 			isa = PBXGroup;
 			children = (
+				D2B40A8A11AC9E9000829042 /* Localghost.icns */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -183,7 +187,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				D2B4084311A9D02C00829042 /* CopyFiles */,
+				D2B4084311A9D02C00829042 /* Copy Executables */,
 			);
 			buildRules = (
 			);
@@ -238,6 +242,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				D2B408E611AA1C5200829042 /* Preferences.xib in Resources */,
+				D2B40A8B11AC9E9000829042 /* Localghost.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
