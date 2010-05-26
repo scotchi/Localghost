@@ -67,6 +67,17 @@
     [addHostSheet orderOut: sender];
 }
 
+- (IBAction) removeHost: (id) sender
+{
+    [hostsController remove: sender];
+    [self save];
+}
+
+- (void) openOnLoginClicked: (id) sender
+{
+    [self setOpenOnLogin: ([sender state] == NSOnState)];
+}
+
 - (void) save
 {
     NSMutableArray *values = [[NSMutableArray alloc] init];
@@ -130,11 +141,6 @@
             }
         }
     }
-}
-
-- (void) openOnLoginClicked: (id) sender
-{
-    [self setOpenOnLogin: ([sender state] == NSOnState)];
 }
 
 - (void) setOpenOnLogin: (BOOL) open

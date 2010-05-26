@@ -20,7 +20,6 @@
 @interface PreferenceController : NSWindowController
 {
     NSMutableArray *hosts;
-    IBOutlet NSTableView *hostsTable;
     IBOutlet NSArrayController *hostsController;
     IBOutlet NSWindow *addHostSheet;
     IBOutlet NSTextField *addHostTextField;
@@ -29,12 +28,13 @@
 @property (retain) NSArray *hosts;
 
 - (IBAction) addHost: (id) sender;
+- (IBAction) removeHost: (id) sender;
 - (IBAction) addHostOk: (id) sender;
 - (IBAction) addHostCancel: (id) sender;
+- (IBAction) openOnLoginClicked: (id) sender;
 - (void) save;
 - (void) load;
 - (void) activateHosts: (NSDictionary *) allHosts;
-- (void) openOnLoginClicked: (id) sender;
 - (void) setOpenOnLogin: (BOOL) open;
 
 @end
