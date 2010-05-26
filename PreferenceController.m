@@ -27,6 +27,7 @@
 @implementation PreferenceController
 
 @synthesize hosts;
+@synthesize openOnLoginState;
 
 - (id) init
 {
@@ -76,6 +77,8 @@
 - (void) openOnLoginClicked: (id) sender
 {
     [self setOpenOnLogin: ([sender state] == NSOnState)];
+    openOnLoginState = [sender state];
+    [self save];
 }
 
 - (void) save
@@ -89,6 +92,8 @@
 
     NSMutableDictionary *preferences = [[NSMutableDictionary alloc] init];
     [preferences setObject: values forKey: @"hosts" ];
+    [preferences setObject: (openOnLoginState == NSOnState ? @"1" : @"0")
+                 forKey: @"OpenOnLogin"];
 
     if(![preferences writeToFile: PREFERENCES_FILE atomically: YES])
     {
@@ -99,6 +104,9 @@
 - (void) load
 {
     NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile: PREFERENCES_FILE];
+
+    // Read the HostsList
+
     NSArray *values = [preferences objectForKey: @"hosts"];
     NSMutableDictionary *hostsDict = [[NSMutableDictionary alloc] init];
 
@@ -113,6 +121,19 @@
     }
 
     [self activateHosts: hostsDict];
+
+    // Read the OpenOnLogin preference
+
+    if(![[preferences allKeys] containsObject: @"OpenOnLogin"])
+    {
+        [self setOpenOnLogin: YES];
+        openOnLoginState = NSOnState;
+    }
+    else
+    {
+        NSString *value = [preferences valueForKey: @"OpenOnLogin"];
+        openOnLoginState = [value compare: @"1"] == NSOrderedSame ? NSOnState : NSOffState;
+    }
 }
 
 - (void) activateHosts: (NSDictionary *) allHosts;

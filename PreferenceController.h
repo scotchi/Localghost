@@ -20,12 +20,15 @@
 @interface PreferenceController : NSWindowController
 {
     NSMutableArray *hosts;
+    NSInteger openOnLoginState;
     IBOutlet NSArrayController *hostsController;
+    IBOutlet NSButton *openOnLoginButton;
     IBOutlet NSWindow *addHostSheet;
     IBOutlet NSTextField *addHostTextField;
 }
 
 @property (retain) NSArray *hosts;
+@property (assign) NSInteger openOnLoginState;
 
 - (IBAction) addHost: (id) sender;
 - (IBAction) removeHost: (id) sender;
