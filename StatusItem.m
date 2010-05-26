@@ -161,7 +161,13 @@
 
 - (void) showAbout: (id) sender;
 {
-    [[[NSWindowController alloc] initWithWindowNibName: @"About"] showWindow: self];
+    if(!about)
+    {
+        about = [[NSWindowController alloc] initWithWindowNibName: @"About"];
+        [about retain];
+    }
+
+    [about showWindow: self];
 }
 
 @end
