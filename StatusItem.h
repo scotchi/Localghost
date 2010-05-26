@@ -37,7 +37,7 @@
 - (NSImage *) image;
 - (void) menuWillOpen: (NSMenu *) m;
 - (void) hostSelected: (id) sender;
-- (PreferenceController *) initPreferences;
+- (PreferenceController *) preferences;
 - (void) showPreferences: (id) sender;
 - (void) showAbout: (id) sender;
 

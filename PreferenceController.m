@@ -28,6 +28,7 @@
 
 @synthesize hosts;
 @synthesize openOnLoginState;
+@synthesize firstRun;
 
 - (id) init
 {
@@ -124,10 +125,13 @@
 
     // Read the OpenOnLogin preference
 
-    if(![[preferences allKeys] containsObject: @"OpenOnLogin"])
+    firstRun = ![[preferences allKeys] containsObject: @"OpenOnLogin"];
+
+    if(firstRun)
     {
-        [self setOpenOnLogin: YES];
         openOnLoginState = NSOnState;
+        [self setOpenOnLogin: YES];
+        [self save];
     }
     else
     {

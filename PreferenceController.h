@@ -21,6 +21,7 @@
 {
     NSMutableArray *hosts;
     NSInteger openOnLoginState;
+    BOOL firstRun;
     IBOutlet NSArrayController *hostsController;
     IBOutlet NSButton *openOnLoginButton;
     IBOutlet NSWindow *addHostSheet;
@@ -29,6 +30,7 @@
 
 @property (retain) NSArray *hosts;
 @property (assign) NSInteger openOnLoginState;
+@property (assign) BOOL firstRun;
 
 - (IBAction) addHost: (id) sender;
 - (IBAction) removeHost: (id) sender;

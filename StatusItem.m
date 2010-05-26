@@ -31,6 +31,12 @@
     [authorization retain];
 
     [self createMenu];
+
+    if([[self preferences] firstRun])
+    {
+        [self showPreferences: self];
+    }
+
     return self;
 }
 
@@ -94,7 +100,7 @@
 
     [hostsMenuItems removeAllObjects];
 
-    NSArray *hosts = [[self initPreferences] hosts];
+    NSArray *hosts = [[self preferences] hosts];
 
     [hostsSeparator setHidden: [hosts count] == 0];
 
@@ -143,7 +149,7 @@
                                        NULL);
 }
 
-- (PreferenceController *) initPreferences
+- (PreferenceController *) preferences
 {
     if(!preferences)
     {
@@ -156,7 +162,8 @@
 
 - (void) showPreferences: (id) sender
 {
-    [[self initPreferences] showWindow: self];
+    [[self preferences] showWindow: self];
+    [NSApp activateIgnoringOtherApps: YES];
 }
 
 - (void) showAbout: (id) sender;
@@ -168,6 +175,7 @@
     }
 
     [about showWindow: self];
+    [NSApp activateIgnoringOtherApps: YES];
 }
 
 @end
