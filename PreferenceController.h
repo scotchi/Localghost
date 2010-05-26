@@ -34,5 +34,7 @@
 - (void) save;
 - (void) load;
 - (void) activateHosts: (NSDictionary *) allHosts;
+- (void) openOnLoginClicked: (id) sender;
+- (void) setOpenOnLogin: (BOOL) open;
 
 @end

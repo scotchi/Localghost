@@ -132,4 +132,50 @@
     }
 }
 
+- (void) openOnLoginClicked: (id) sender
+{
+    [self setOpenOnLogin: ([sender state] == NSOnState)];
+}
+
+- (void) setOpenOnLogin: (BOOL) open
+{
+    CFURLRef url = (CFURLRef) [NSURL fileURLWithPath: [[NSBundle mainBundle] bundlePath]];
+
+    LSSharedFileListRef items =
+        LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+
+    if(open)
+    {
+        LSSharedFileListItemRef item =
+            LSSharedFileListInsertItemURL(items, kLSSharedFileListItemLast, NULL, NULL,
+                                          url, NULL, NULL);
+        CFRelease(item);
+    }
+    else
+    {
+        UInt32 seedValue;
+        NSArray  *values = (NSArray *) LSSharedFileListCopySnapshot(items, &seedValue);
+
+        for(NSUInteger i = 0; i < [values count]; i++)
+        {
+            LSSharedFileListItemRef itemRef =
+                (LSSharedFileListItemRef)[values objectAtIndex: i];
+
+            if(LSSharedFileListItemResolve(itemRef, 0, (CFURLRef *) &url, NULL) == noErr)
+            {
+                NSString *urlPath = [(NSURL *) url path];
+
+                if([urlPath compare: [[NSBundle mainBundle] bundlePath]] == NSOrderedSame)
+                {
+                    LSSharedFileListItemRemove(items, itemRef);
+                }
+            }
+        }
+
+        [values release];
+    }
+
+    CFRelease(items);
+}
+
 @end
