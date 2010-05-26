@@ -27,6 +27,7 @@
     BOOL enabled;
     SFAuthorization *authorization;
     PreferenceController *preferences;
+    NSWindowController *about;
     NSMenuItem *hostsSeparator;
     NSMutableArray *hostsMenuItems;
 }
@@ -38,5 +39,6 @@
 - (void) hostSelected: (id) sender;
 - (PreferenceController *) initPreferences;
 - (void) showPreferences: (id) sender;
+- (void) showAbout: (id) sender;
 
 @end

@@ -20,6 +20,7 @@
 		D2B408EF11AA1D3D00829042 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B408EE11AA1D3D00829042 /* PreferenceController.m */; };
 		D2B4093311AA7EA000829042 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4093211AA7EA000829042 /* Host.m */; };
 		D2B40A8B11AC9E9000829042 /* Localghost.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2B40A8A11AC9E9000829042 /* Localghost.icns */; };
+		D2B40ABD11ACC87A00829042 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B40ABC11ACC87A00829042 /* About.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		D2B4093111AA7EA000829042 /* Host.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Host.h; sourceTree = "<group>"; };
 		D2B4093211AA7EA000829042 /* Host.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Host.m; sourceTree = "<group>"; };
 		D2B40A8A11AC9E9000829042 /* Localghost.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Localghost.icns; sourceTree = "<group>"; };
+		D2B40ABC11ACC87A00829042 /* About.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				D2B408EE11AA1D3D00829042 /* PreferenceController.m */,
 				D2B4093111AA7EA000829042 /* Host.h */,
 				D2B4093211AA7EA000829042 /* Host.m */,
+				D2B40ABC11ACC87A00829042 /* About.xib */,
 			);
 			name = Localghost;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				D2B408E611AA1C5200829042 /* Preferences.xib in Resources */,
 				D2B40A8B11AC9E9000829042 /* Localghost.icns in Resources */,
+				D2B40ABD11ACC87A00829042 /* About.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

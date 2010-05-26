@@ -44,6 +44,14 @@
     
     menu = [[NSMenu alloc] initWithTitle:@""];
 
+
+    [[menu addItemWithTitle: @"About Localghost"
+           action:@selector(showAbout:)
+           keyEquivalent: @""]
+        setTarget: self];
+
+    [menu addItem: [NSMenuItem separatorItem]];
+
     hostsSeparator = [NSMenuItem separatorItem];
     [menu addItem: hostsSeparator];
 
@@ -53,6 +61,7 @@
         setTarget: self];
 
     [menu addItem: [NSMenuItem separatorItem]];
+
     [menu addItemWithTitle: @"Quit"
           action:@selector(terminate:)
           keyEquivalent: @""];
@@ -65,7 +74,7 @@
 
 - (NSImage *) image
 {
-    NSImage *image = [NSImage imageNamed: @"Localghost.icns"];
+    NSImage *image = [[NSImage imageNamed: @"Localghost.icns"] copy];
 
     NSSize size;
     size.height = 22;
@@ -86,6 +95,8 @@
     [hostsMenuItems removeAllObjects];
 
     NSArray *hosts = [[self initPreferences] hosts];
+
+    [hostsSeparator setHidden: [hosts count] == 0];
 
     for(NSUInteger i = 0; i < [hosts count]; i++)
     {
@@ -145,7 +156,12 @@
 
 - (void) showPreferences: (id) sender
 {
-    [[self initPreferences] showWindow:self];
+    [[self initPreferences] showWindow: self];
+}
+
+- (void) showAbout: (id) sender;
+{
+    [[[NSWindowController alloc] initWithWindowNibName: @"About"] showWindow: self];
 }
 
 @end
