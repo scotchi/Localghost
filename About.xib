@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4"/>
+			<integer value="7"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -59,7 +59,7 @@
 												<object class="NSLayoutManager" key="NSLayoutManager">
 													<object class="NSTextStorage" key="NSTextStorage">
 														<object class="NSMutableString" key="NSString">
-															<bytes key="NS.bytes">TG9jYWxnaG9zdApWZXJzaW9uIDEuMApGYXN0IHN3aXRjaGluZyB0byByZXNvbHZlIGRldmVsb3BtZW50
+															<bytes key="NS.bytes">TG9jYWxnaG9zdApWZXJzaW9uIDEuMQpGYXN0IHN3aXRjaGluZyB0byByZXNvbHZlIGRldmVsb3BtZW50
 IGhvc3QgbmFtZXMgdG8gbG9jYWxob3N0LgpTb3VyY2Ugb24gR2l0aHViCkhvbWVwYWdlCkNvcHlyaWdo
 dCDCqSAyMDEwIFNjb3R0IFdoZWVsZXIsIEdOVSBHUEwKSWNvbiBDb3B5cmlnaHQgwqkgMjAwOCBKb2pv
 IE1lbmRvemEsIENDTkNORA</bytes>
@@ -392,20 +392,19 @@ IE1lbmRvemEsIENDTkNORA</bytes>
 															<int key="NSColorSpace">1</int>
 															<bytes key="NSRGB">MCAwIDEAA</bytes>
 														</object>
-														<integer value="1"/>
+														<integer value="1" id="9"/>
 													</object>
 												</object>
 												<nil key="NSDefaultParagraphStyle"/>
 											</object>
 											<int key="NSTVFlags">6</int>
 											<string key="NSMaxSize">{615, 1e+07}</string>
-											<string key="NSMinize">{221, 79}</string>
+											<string key="NSMinize">{221, 0}</string>
 											<nil key="NSDelegate"/>
 										</object>
 									</object>
 									<string key="NSFrameSize">{239, 207}</string>
 									<reference key="NSSuperview" ref="1038814145"/>
-									<reference key="NSNextKeyView" ref="914958701"/>
 									<reference key="NSDocView" ref="914958701"/>
 									<object class="NSColor" key="NSBGColor">
 										<int key="NSColorSpace">2</int>
@@ -440,7 +439,6 @@ IE1lbmRvemEsIENDTkNORA</bytes>
 							</object>
 							<string key="NSFrame">{{20, 20}, {239, 207}}</string>
 							<reference key="NSSuperview" ref="871690208"/>
-							<reference key="NSNextKeyView" ref="875415381"/>
 							<int key="NSsFlags">0</int>
 							<reference key="NSVScroller" ref="1039395394"/>
 							<reference key="NSHScroller" ref="1010113183"/>
@@ -628,17 +626,17 @@ IE1lbmRvemEsIENDTkNORA</bytes>
 					<string>{{20, 167}, {279, 327}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{20, 167}, {279, 327}}</string>
-					<integer value="1"/>
+					<reference ref="9"/>
 					<integer value="0" id="6"/>
 					<reference ref="6"/>
 					<string>{350, 300}</string>
 					<string>{0, 0}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<real value="0.000000e+00" id="640473397"/>
+					<reference ref="6"/>
 					<reference ref="956728561"/>
-					<reference ref="640473397"/>
-					<reference ref="640473397"/>
+					<reference ref="6"/>
+					<reference ref="6"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
