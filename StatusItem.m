@@ -25,7 +25,7 @@
 
 static SFAuthorization *authorization = nil;
 
-+ (void) runPrivilegedHelper: (NSString *) command arguments: (NSArray *) args
++ (BOOL) runPrivilegedHelper: (NSString *) command arguments: (NSArray *) args
 {
     const char **arguments = calloc([args count] + 1, sizeof(char *));
 
@@ -40,13 +40,44 @@ static SFAuthorization *authorization = nil;
         [authorization retain];
     }
 
-    AuthorizationExecuteWithPrivileges([authorization authorizationRef],
-                                       [command UTF8String],
-                                       kAuthorizationFlagDefaults,
-                                       (char * const *) arguments,
-                                       NULL);
+    FILE *status = NULL;
+    OSStatus authStatus;
+    BOOL success = YES;
+    
+    authStatus = AuthorizationExecuteWithPrivileges([authorization authorizationRef],
+                                                    [command UTF8String],
+                                                    kAuthorizationFlagDefaults,
+                                                    (char * const *) arguments,
+                                                    &status);
+    
+    if (authStatus == errAuthorizationSuccess)
+    {
+        char line[512];
+        
+        while (status && fgets(line, 512, status )) 
+        {
+            //NSString *output = [[NSString alloc] initWithCString:line encoding:NSASCIIStringEncoding];
+            NSString *output = [NSString stringWithUTF8String:line];
+            NSString *find = [NSString string];
+            NSScanner *scanner = [NSScanner scannerWithString:output];
+            if ([scanner scanString:@"Could not open" intoString:&find])
+            {
+                success = NO;
+                [output release];
+                [scanner release];
+                break;
+            }
+            
+            [output release];
+            [scanner release];
+        }
+    }
+    else
+        success = NO;
 
     free(arguments);
+    fclose(status);
+    return success;
 }
 
 - (StatusItem *) init
@@ -142,16 +173,16 @@ static SFAuthorization *authorization = nil;
 
 - (void) hostSelected: (id) sender
 {
+    Host *host;
     NSArray *hosts = [preferences hosts];
     BOOL active = NO;
 
     for(NSUInteger i = 0; i < [hosts count]; i++)
     {
-        Host *host = [hosts objectAtIndex: i];
+        host = [hosts objectAtIndex: i];
         if([[sender title] compare: [host name]] == NSOrderedSame)
         {
             active = ![host active];
-            [host setActive: active];
             break;
         }
     }
@@ -161,7 +192,10 @@ static SFAuthorization *authorization = nil;
     NSArray *arguments =
         [NSArray arrayWithObjects: (active ? @"--enable" : @"--disable"), [sender title], nil];
 
-    [StatusItem runPrivilegedHelper: helper arguments: arguments];
+    if ([StatusItem runPrivilegedHelper: helper arguments: arguments])
+    {
+        [host setActive: active];
+    }
 }
 
 - (PreferenceController *) preferences

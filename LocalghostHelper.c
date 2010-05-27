@@ -56,6 +56,7 @@ static void set_enabled(const char *host, int enabled)
 
     if(!hosts)
     {
+        printf("Could not open %s for writing.\n", HOSTS_FILE);
         fprintf(stderr, "Could not open %s for writing.\n", HOSTS_FILE);
         return;
     }

@@ -31,7 +31,7 @@
     NSMutableArray *hostsMenuItems;
 }
 
-+ (void) runPrivilegedHelper: (NSString *) command arguments: (NSArray *) args;
++ (BOOL) runPrivilegedHelper: (NSString *) command arguments: (NSArray *) args;
 
 - (StatusItem *) init;
 - (void) createMenu;
