@@ -25,12 +25,13 @@
     NSStatusItem *item;
     NSMenu *menu;
     BOOL enabled;
-    SFAuthorization *authorization;
     PreferenceController *preferences;
     NSWindowController *about;
     NSMenuItem *hostsSeparator;
     NSMutableArray *hostsMenuItems;
 }
+
++ (void) runPrivilegedHelper: (NSString *) command arguments: (NSArray *) args;
 
 - (StatusItem *) init;
 - (void) createMenu;

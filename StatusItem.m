@@ -23,13 +23,35 @@
 
 @implementation StatusItem
 
+static SFAuthorization *authorization = nil;
+
++ (void) runPrivilegedHelper: (NSString *) command arguments: (NSArray *) args
+{
+    const char **arguments = calloc([args count] + 1, sizeof(char *));
+
+    for(NSUInteger i = 0; i < [args count]; i++)
+    {
+        arguments[i] = [[args objectAtIndex: i] UTF8String];
+    }
+
+    if(!authorization)
+    {
+        authorization = [SFAuthorization authorization];
+        [authorization retain];
+    }
+
+    AuthorizationExecuteWithPrivileges([authorization authorizationRef],
+                                       [command UTF8String],
+                                       kAuthorizationFlagDefaults,
+                                       (char * const *) arguments,
+                                       NULL);
+
+    free(arguments);
+}
+
 - (StatusItem *) init
 {
     [super init];
-
-    authorization = [SFAuthorization authorization];
-    [authorization retain];
-
     [self createMenu];
 
     if([[self preferences] firstRun])
@@ -120,17 +142,12 @@
 
 - (void) hostSelected: (id) sender
 {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *helperPath = [bundle pathForAuxiliaryExecutable: @"LocalghostHelper"];
-    const char *arguments[] = { NULL, NULL, NULL };
-
     NSArray *hosts = [preferences hosts];
     BOOL active = NO;
 
     for(NSUInteger i = 0; i < [hosts count]; i++)
     {
         Host *host = [hosts objectAtIndex: i];
-
         if([[sender title] compare: [host name]] == NSOrderedSame)
         {
             active = ![host active];
@@ -139,14 +156,12 @@
         }
     }
 
-    arguments[0] = active ? "--enable" : "--disable";
-    arguments[1] = [[sender title] UTF8String];
+    NSString *helper =
+        [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"LocalghostHelper"];
+    NSArray *arguments =
+        [NSArray arrayWithObjects: (active ? @"--enable" : @"--disable"), [sender title], nil];
 
-    AuthorizationExecuteWithPrivileges([authorization authorizationRef],
-                                       [helperPath UTF8String],
-                                       kAuthorizationFlagDefaults,
-                                       (char * const *) arguments,
-                                       NULL);
+    [StatusItem runPrivilegedHelper: helper arguments: arguments];
 }
 
 - (PreferenceController *) preferences
