@@ -56,7 +56,6 @@ static SFAuthorization *authorization = nil;
         
         while (status && fgets(line, 512, status )) 
         {
-            //NSString *output = [[NSString alloc] initWithCString:line encoding:NSASCIIStringEncoding];
             NSString *output = [NSString stringWithUTF8String:line];
             NSString *find = [NSString string];
             NSScanner *scanner = [NSScanner scannerWithString:output];
@@ -67,7 +66,7 @@ static SFAuthorization *authorization = nil;
                 [scanner release];
                 break;
             }
-            
+            [find release];
             [output release];
             [scanner release];
         }
