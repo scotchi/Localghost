@@ -48,7 +48,7 @@
     [item setImage: [self image]];
     [item setHighlightMode: YES];
     
-    menu = [[NSMenu alloc] initWithTitle:@""];
+    menu = [[NSMenu alloc] initWithTitle: @""];
 
 
     [[menu addItemWithTitle: @"About Localghost"

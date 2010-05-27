@@ -40,7 +40,7 @@
 
 #define PRINT_USAGE \
     fprintf(stderr, "Must be called with --enable or --disable and a host name\n"); \
-    return 1;
+    return 1
 
 static void set_enabled(const char *host, int enabled)
 {
