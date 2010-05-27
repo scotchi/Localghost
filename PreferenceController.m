@@ -44,6 +44,7 @@
 
 - (void) dealloc
 {
+    [hosts release];
     [super dealloc];
 }
 
@@ -58,7 +59,9 @@
 
 - (IBAction) addHostOk: (id) sender
 {
-    [hostsController addObject: [[Host alloc] initWithName: [addHostTextField stringValue]]];
+    Host *host = [[Host alloc] initWithName: [addHostTextField stringValue]];
+    [hostsController addObject: host];
+    [host release];
     [self save];
     [self addHostCancel: sender];
 }
@@ -92,14 +95,19 @@
     }
 
     NSMutableDictionary *preferences = [[NSMutableDictionary alloc] init];
+
     [preferences setObject: values forKey: @"Hosts" ];
     [preferences setObject: (openOnLoginState == NSOnState ? @"1" : @"0")
                  forKey: @"OpenOnLogin"];
+
+    [values release];
 
     if(![preferences writeToFile: PREFERENCES_FILE atomically: YES])
     {
         NSLog(@"Could not save to %s", PREFERENCES_FILE);
     }
+
+    [preferences release];
 }
 
 - (void) load
@@ -119,9 +127,11 @@
         Host *host = [[Host alloc] initWithName: name];
         [hosts addObject: host];
         [hostsDict setValue: host forKey: name];
+        [host release];
     }
 
     [self activateHosts: hostsDict];
+    [hostsDict release];
 
     // Read the OpenOnLogin preference
 
@@ -185,7 +195,7 @@
     else
     {
         UInt32 seedValue;
-        NSArray  *values = (NSArray *) LSSharedFileListCopySnapshot(items, &seedValue);
+        NSArray *values = (NSArray *) LSSharedFileListCopySnapshot(items, &seedValue);
 
         for(NSUInteger i = 0; i < [values count]; i++)
         {

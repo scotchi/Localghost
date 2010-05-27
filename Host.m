@@ -38,7 +38,7 @@
 
 - (id) initWithName: (NSString *) n;
 {
-    name = n;
+    name = [n retain];
     return self;
 }
 

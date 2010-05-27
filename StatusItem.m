@@ -56,7 +56,7 @@ static SFAuthorization *authorization = nil;
     {
         char line[BUFFER_SIZE];
 
-        while (status && fgets(line, BUFFER_SIZE, status))
+        while(status && fgets(line, BUFFER_SIZE, status))
         {
             NSString *output = [NSString stringWithUTF8String: line];
             NSString *find = [NSString string];
@@ -65,14 +65,6 @@ static SFAuthorization *authorization = nil;
             if([scanner scanString: @"Could not open" intoString: &find])
             {
                 success = NO;
-            }
-
-            [find release];
-            [output release];
-            [scanner release];
-
-            if(!success)
-            {
                 break;
             }
         }
@@ -100,6 +92,17 @@ static SFAuthorization *authorization = nil;
     return self;
 }
 
+- (void) dealloc
+{
+    [about release];
+    [preferences release];
+    [menu release];
+    [hostsSeparator release];
+    [hostsMenuItems release];
+    [item release];
+    [super dealloc];
+}
+
 - (void) createMenu
 {
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
@@ -110,7 +113,6 @@ static SFAuthorization *authorization = nil;
 
     menu = [[NSMenu alloc] initWithTitle: @""];
 
-
     [[menu addItemWithTitle: @"About Localghost"
            action:@selector(showAbout:)
            keyEquivalent: @""]
@@ -118,7 +120,8 @@ static SFAuthorization *authorization = nil;
 
     [menu addItem: [NSMenuItem separatorItem]];
 
-    hostsSeparator = [NSMenuItem separatorItem];
+    hostsSeparator = [[NSMenuItem separatorItem] retain];
+
     [menu addItem: hostsSeparator];
 
     [[menu addItemWithTitle: @"Preferences..."
@@ -141,6 +144,7 @@ static SFAuthorization *authorization = nil;
 - (NSImage *) image
 {
     NSImage *image = [[NSImage imageNamed: @"Localghost.icns"] copy];
+    [image autorelease];
 
     NSSize size;
     size.height = 22;
@@ -210,7 +214,6 @@ static SFAuthorization *authorization = nil;
     if(!preferences)
     {
         preferences = [[PreferenceController alloc] init];
-        [preferences retain];
     }
 
     return preferences;
@@ -227,7 +230,6 @@ static SFAuthorization *authorization = nil;
     if(!about)
     {
         about = [[NSWindowController alloc] initWithWindowNibName: @"About"];
-        [about retain];
     }
 
     [about showWindow: self];

@@ -32,6 +32,8 @@
 @property (assign) NSInteger openOnLoginState;
 @property (assign) BOOL firstRun;
 
+- (id) init;
+- (void) dealloc;
 - (IBAction) addHost: (id) sender;
 - (IBAction) removeHost: (id) sender;
 - (IBAction) addHostOk: (id) sender;
