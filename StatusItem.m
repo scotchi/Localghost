@@ -65,14 +65,16 @@ static SFAuthorization *authorization = nil;
             if([scanner scanString: @"Could not open" intoString: &find])
             {
                 success = NO;
-                [output release];
-                [scanner release];
-                break;
             }
 
             [find release];
             [output release];
             [scanner release];
+
+            if(!success)
+            {
+                break;
+            }
         }
     }
     else
