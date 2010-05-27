@@ -64,9 +64,10 @@ static void set_enabled(const char *host, int enabled)
 
     while((bytes_read = fread(&buffer[0], sizeof(char), BUFFER_SIZE, hosts)) > 0)
     {
-        content = realloc(content, content_size + bytes_read);
+        content = realloc(content, content_size + bytes_read + 1);
         memcpy(&content[content_size], buffer, bytes_read);
         content_size += bytes_read;
+        content[content_size] = '\0';
     }
 
     hosts = freopen(HOSTS_FILE, "w", hosts);
