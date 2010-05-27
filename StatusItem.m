@@ -21,6 +21,8 @@
 
 #import <SecurityFoundation/SFAuthorization.h>
 
+#define BUFFER_SIZE 512
+
 @implementation StatusItem
 
 static SFAuthorization *authorization = nil;
@@ -43,36 +45,40 @@ static SFAuthorization *authorization = nil;
     FILE *status = NULL;
     OSStatus authStatus;
     BOOL success = YES;
-    
+
     authStatus = AuthorizationExecuteWithPrivileges([authorization authorizationRef],
                                                     [command UTF8String],
                                                     kAuthorizationFlagDefaults,
                                                     (char * const *) arguments,
                                                     &status);
-    
-    if (authStatus == errAuthorizationSuccess)
+
+    if(authStatus == errAuthorizationSuccess)
     {
-        char line[512];
-        
-        while (status && fgets(line, 512, status )) 
+        char line[BUFFER_SIZE];
+
+        while (status && fgets(line, BUFFER_SIZE, status))
         {
-            NSString *output = [NSString stringWithUTF8String:line];
+            NSString *output = [NSString stringWithUTF8String: line];
             NSString *find = [NSString string];
-            NSScanner *scanner = [NSScanner scannerWithString:output];
-            if ([scanner scanString:@"Could not open" intoString:&find])
+            NSScanner *scanner = [NSScanner scannerWithString: output];
+
+            if([scanner scanString: @"Could not open" intoString: &find])
             {
                 success = NO;
                 [output release];
                 [scanner release];
                 break;
             }
+
             [find release];
             [output release];
             [scanner release];
         }
     }
     else
+    {
         success = NO;
+    }
 
     free(arguments);
     fclose(status);
@@ -99,7 +105,7 @@ static SFAuthorization *authorization = nil;
     [item retain];
     [item setImage: [self image]];
     [item setHighlightMode: YES];
-    
+
     menu = [[NSMenu alloc] initWithTitle: @""];
 
 
@@ -191,7 +197,7 @@ static SFAuthorization *authorization = nil;
     NSArray *arguments =
         [NSArray arrayWithObjects: (active ? @"--enable" : @"--disable"), [sender title], nil];
 
-    if ([StatusItem runPrivilegedHelper: helper arguments: arguments])
+    if([StatusItem runPrivilegedHelper: helper arguments: arguments])
     {
         [host setActive: active];
     }
