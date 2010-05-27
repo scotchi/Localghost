@@ -97,6 +97,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D2B3F76C118A71DF00119AEF /* StatusItem.h */,
+				D2B3F76D118A71DF00119AEF /* StatusItem.m */,
 				D2B408ED11AA1D3D00829042 /* PreferenceController.h */,
 				D2B408EE11AA1D3D00829042 /* PreferenceController.m */,
 				D2B4093111AA7EA000829042 /* Host.h */,
@@ -150,8 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				D2B407CA11A9132A00829042 /* LocalghostHelper.c */,
-				D2B3F76C118A71DF00119AEF /* StatusItem.h */,
-				D2B3F76D118A71DF00119AEF /* StatusItem.m */,
 				32CA4F630368D1EE00C91783 /* Localghost_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
