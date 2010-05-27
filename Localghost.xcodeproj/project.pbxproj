@@ -97,6 +97,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D2B408ED11AA1D3D00829042 /* PreferenceController.h */,
+				D2B408EE11AA1D3D00829042 /* PreferenceController.m */,
+				D2B4093111AA7EA000829042 /* Host.h */,
+				D2B4093211AA7EA000829042 /* Host.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -133,19 +137,11 @@
 		29B97314FDCFA39411CA2CEA /* Localghost */ = {
 			isa = PBXGroup;
 			children = (
-				D2B40A8A11AC9E9000829042 /* Localghost.icns */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				D2B407CA11A9132A00829042 /* LocalghostHelper.c */,
-				D2B408E511AA1C5200829042 /* Preferences.xib */,
-				D2B408ED11AA1D3D00829042 /* PreferenceController.h */,
-				D2B408EE11AA1D3D00829042 /* PreferenceController.m */,
-				D2B4093111AA7EA000829042 /* Host.h */,
-				D2B4093211AA7EA000829042 /* Host.m */,
-				D2B40ABC11ACC87A00829042 /* About.xib */,
 			);
 			name = Localghost;
 			sourceTree = "<group>";
@@ -153,6 +149,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D2B407CA11A9132A00829042 /* LocalghostHelper.c */,
 				D2B3F76C118A71DF00119AEF /* StatusItem.h */,
 				D2B3F76D118A71DF00119AEF /* StatusItem.m */,
 				32CA4F630368D1EE00C91783 /* Localghost_Prefix.pch */,
@@ -164,6 +161,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D2B40A8A11AC9E9000829042 /* Localghost.icns */,
+				D2B40ABC11ACC87A00829042 /* About.xib */,
+				D2B408E511AA1C5200829042 /* Preferences.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -323,6 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -379,6 +380,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;

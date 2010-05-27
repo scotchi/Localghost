@@ -1,4 +1,5 @@
 *~
-Localghost.xcodeproj/*.pbxuser
-Localghost.xcodeproj/*.perspectivev3
+*.pbxuser
+*.perspectivev3
+*.mode1v3
 build
