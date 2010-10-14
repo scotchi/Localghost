@@ -21,13 +21,15 @@
 
 #import <SecurityFoundation/SFAuthorization.h>
 
+#import <sys/stat.h>
+
 #define BUFFER_SIZE 512
 
 @implementation StatusItem
 
 static SFAuthorization *authorization = nil;
 
-+ (BOOL) runPrivilegedHelper: (NSString *) command arguments: (NSArray *) args
++ (BOOL) runPrivileged: (NSString *) command arguments: (NSArray *) args
 {
     const char **arguments = calloc([args count] + 1, sizeof(char *));
 
@@ -77,6 +79,24 @@ static SFAuthorization *authorization = nil;
     free(arguments);
     fclose(status);
     return success;
+}
+
++ (BOOL) checkHelperPermissions: (NSString *) helper
+{
+    int descriptor = open([helper fileSystemRepresentation], O_RDONLY);
+
+    if(descriptor == -1)
+    {
+        return NO;
+    }
+
+    struct stat stats;
+
+    BOOL readStats = fstat(descriptor, &stats) == 0;
+
+    close(descriptor);
+
+    return readStats && stats.st_uid == 0 && stats.st_mode & S_ISUID;
 }
 
 - (StatusItem *) init
@@ -200,11 +220,24 @@ static SFAuthorization *authorization = nil;
 
     NSString *helper =
         [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"LocalghostHelper"];
-    NSArray *arguments =
-        [NSArray arrayWithObjects: (active ? @"--enable" : @"--disable"), [sender title], nil];
 
-    if([StatusItem runPrivilegedHelper: helper arguments: arguments])
+    // If the helper is already owned by root and setuid, or if we can
+    // successfully set it to such, then run the helper.
+
+    if([StatusItem checkHelperPermissions: helper] ||
+       ([StatusItem runPrivileged: @"/usr/sbin/chown"
+                    arguments: [NSArray arrayWithObjects: @"root", helper, nil]] &&
+        [StatusItem runPrivileged: @"/bin/chmod"
+                    arguments: [NSArray arrayWithObjects: @"4755", helper, nil]]))
     {
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath: helper];
+        [task setArguments:
+                  [NSArray arrayWithObjects: (active ? @"--enable" : @"--disable"),
+                           [sender title], nil]];
+        [task launch];
+        [task waitUntilExit];
+        [task release];
         [host setActive: active];
     }
 }

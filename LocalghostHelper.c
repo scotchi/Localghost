@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <sys/file.h>
 
 #define HOSTS_FILE "/etc/hosts"
@@ -117,6 +118,12 @@ int main(int argc, char *argv[])
     if(argc != 3)
     {
         PRINT_USAGE;
+    }
+
+    if(setuid(0) != 0)
+    {
+        printf("Not running as root.\n");
+        return 2;
     }
 
     mode = argv[1];
