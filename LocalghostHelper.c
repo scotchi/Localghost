@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 #include <sys/file.h>
 
 #define HOSTS_FILE "/etc/hosts"
@@ -40,8 +41,82 @@
     fprintf(hosts, "%s\n", line)
 
 #define PRINT_USAGE \
-    printf("Must be called with --enable or --disable and a host name\n"); \
+    printf("LocalghostHelper (--enable|--disable) host [port]\n"); \
     return 1
+
+#define CONFIG_FILE_FORMAT \
+    "/etc/apache2/other/localghost.%s.conf"
+
+static void restart_apache(void)
+{
+    system("/usr/sbin/apachectl restart");
+}
+
+static BOOL validate_host_name(const char *host)
+{
+    const int length = strlen(host);
+    int i = 0;
+
+    if(length > 0xff)
+    {
+        return FALSE;
+    }
+
+    for(i = 0; i < length; i++)
+    {
+        char c = tolower(host[i]);
+
+        if(c != '.' && c != '-' && (c < 'a' || c > 'z'))
+        {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}
+
+static void remove_proxy(const char *host)
+{
+    char config_file_name[1024];
+    snprintf(config_file_name, sizeof(config_file_name), CONFIG_FILE_FORMAT, host);
+
+    if(unlink(config_file_name) == 0)
+    {
+        restart_apache();
+    }
+}
+
+static void create_proxy(const char *host, int port)
+{
+    char config_file_name[1024];
+    FILE *config_file = NULL;
+
+    if(!validate_host_name(host))
+    {
+        printf("Invalid host name.\n");
+        return;
+    }
+
+    snprintf(config_file_name, sizeof(config_file_name), CONFIG_FILE_FORMAT, host);
+
+    config_file = fopen(config_file_name, "w");
+
+    if(!config_file)
+    {
+        printf("Could not open %s\n", config_file_name);
+        return;
+    }
+
+    fprintf(config_file, "<VirtualHost *:80>\n");
+    fprintf(config_file, "\tServerName %s\n", host);
+    fprintf(config_file, "\tProxyPass / http://localhost:%i/\n", port);
+    fprintf(config_file, "\tProxyPassReverse http://localhost:%i/ /\n", port);
+    fprintf(config_file, "</VirtualHost>\n");
+
+    fclose(config_file);
+
+    restart_apache();
+}
 
 static void set_enabled(const char *host, int enabled)
 {
@@ -114,11 +189,16 @@ int main(int argc, char *argv[])
 {
     const char *mode = NULL;
     const char *host = NULL;
+    const char *port = NULL;
 
-    if(argc != 3)
+    if(argc < 3 || argc > 4)
     {
         PRINT_USAGE;
     }
+
+    mode = argv[1];
+    host = argv[2];
+    port = argc == 4 ? argv[3] : NULL;
 
     if(setuid(0) != 0)
     {
@@ -126,16 +206,19 @@ int main(int argc, char *argv[])
         return 2;
     }
 
-    mode = argv[1];
-    host = argv[2];
-
-    if(strcmp(mode, "--enable") == 0)
+    if(strcmp(mode, "--enable") == 0 && (!port || atoi(port) > 0))
     {
         set_enabled(host, TRUE);
+
+        if(port)
+        {
+            create_proxy(host, atoi(port));
+        }
     }
     else if(strcmp(mode, "--disable") == 0)
     {
         set_enabled(host, FALSE);
+        remove_proxy(host);
     }
     else
     {
