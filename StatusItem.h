@@ -33,6 +33,7 @@
 
 + (BOOL) runPrivileged: (NSString *) command arguments: (NSArray *) args;
 + (BOOL) checkHelperPermissions: (NSString *) helper;
++ (BOOL) setHelperPermissions: (NSString *) helper;
 
 - (StatusItem *) init;
 - (void) createMenu;

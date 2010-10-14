@@ -99,6 +99,14 @@ static SFAuthorization *authorization = nil;
     return readStats && stats.st_uid == 0 && stats.st_mode & S_ISUID;
 }
 
++ (BOOL) setHelperPermissions: (NSString *) helper
+{
+    return ([StatusItem runPrivileged: @"/usr/sbin/chown"
+                        arguments: [NSArray arrayWithObjects: @"root", helper, nil]] &&
+            [StatusItem runPrivileged: @"/bin/chmod"
+                        arguments: [NSArray arrayWithObjects: @"4755", helper, nil]]);
+}
+
 - (StatusItem *) init
 {
     [super init];
@@ -224,11 +232,7 @@ static SFAuthorization *authorization = nil;
     // If the helper is already owned by root and setuid, or if we can
     // successfully set it to such, then run the helper.
 
-    if([StatusItem checkHelperPermissions: helper] ||
-       ([StatusItem runPrivileged: @"/usr/sbin/chown"
-                    arguments: [NSArray arrayWithObjects: @"root", helper, nil]] &&
-        [StatusItem runPrivileged: @"/bin/chmod"
-                    arguments: [NSArray arrayWithObjects: @"4755", helper, nil]]))
+    if([StatusItem checkHelperPermissions: helper] || [StatusItem setHelperPermissions: helper])
     {
         NSTask *task = [[NSTask alloc] init];
         [task setLaunchPath: helper];
