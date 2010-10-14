@@ -26,6 +26,7 @@
     IBOutlet NSButton *openOnLoginButton;
     IBOutlet NSWindow *addHostSheet;
     IBOutlet NSTextField *addHostTextField;
+    IBOutlet NSTextField *portTextField;
 }
 
 @property (retain) NSArray *hosts;
@@ -39,6 +40,7 @@
 - (IBAction) addHostOk: (id) sender;
 - (IBAction) addHostCancel: (id) sender;
 - (IBAction) openOnLoginClicked: (id) sender;
+- (IBAction) proxyRequestsClicked: (id) sender;
 - (void) save;
 - (void) load;
 - (void) activateHosts: (NSDictionary *) allHosts;

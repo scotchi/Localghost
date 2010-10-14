@@ -78,11 +78,16 @@
     [self save];
 }
 
-- (void) openOnLoginClicked: (id) sender
+- (IBAction) openOnLoginClicked: (id) sender
 {
     [self setOpenOnLogin: ([sender state] == NSOnState)];
     openOnLoginState = [sender state];
     [self save];
+}
+
+- (IBAction) proxyRequestsClicked: (id) sender
+{
+    [portTextField setEnabled: [sender state] == NSOnState];
 }
 
 - (void) save
