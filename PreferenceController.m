@@ -97,7 +97,11 @@
 
     for(NSUInteger i = 0; i < [hosts count]; i++)
     {
-        [values addObject: [[hosts objectAtIndex: i] name]];
+        NSMutableDictionary *entry = [[NSMutableDictionary alloc] init];
+        Host *host = [hosts objectAtIndex: i];
+        [entry setObject: [host name] forKey: @"Name" ];
+        [entry setObject: [host port] forKey: @"Port" ];
+        [values addObject: entry];
     }
 
     NSMutableDictionary *preferences = [[NSMutableDictionary alloc] init];
@@ -129,10 +133,27 @@
 
     for(NSUInteger i = 0; values && i < [values count]; i++)
     {
-        NSString *name = [values objectAtIndex: i];
-        Host *host = [[Host alloc] initWithName: name];
+        NSString *entry = [values objectAtIndex: i];
+
+        Host *host = [Host alloc];
+
+        if([entry isKindOfClass: [NSString class]])
+        {
+            host = [host initWithName: entry];
+        }
+        else if([entry isKindOfClass: [NSDictionary class]])
+        {
+            host = [host initWithName: [entry valueForKey: @"Name"]];
+            [host setPort: [entry valueForKey: @"Port"]];
+        }
+        else
+        {
+            NSLog(@"Invalid host entry.");
+            continue;
+        }
+
         [hosts addObject: host];
-        [hostsDict setValue: host forKey: name];
+        [hostsDict setValue: host forKey: [host name]];
         [host release];
     }
 
