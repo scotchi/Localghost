@@ -50,6 +50,11 @@
 
 - (IBAction) addHost: (id) sender
 {
+    [hostTextField setStringValue: @""];
+    [portTextField setStringValue: @""];
+    [proxyRequestsButton setState: NSOffState];
+    [portTextField setEnabled: NSOffState];
+
     [NSApp beginSheet: addHostSheet
            modalForWindow: [self window]
            modalDelegate: nil
