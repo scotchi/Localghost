@@ -20,26 +20,33 @@
 @implementation Host
 
 @synthesize name;
+@synthesize port;
 @synthesize active;
+
+- (id) initWithName: (NSString *) n
+{
+    self = [super init];
+
+    if(self)
+    {
+        [self setName: n];
+        [self setPort: @""];
+        [self setActive: NO];
+    }
+
+    return self;
+}
 
 - (id) init
 {
-    [super init];
-    name = @"";
-    active = NO;
-    return self;
+    return [self initWithName: @""];
 }
 
 - (void) dealloc
 {
     [name release];
+    [port release];
     [super dealloc];
-}
-
-- (id) initWithName: (NSString *) n;
-{
-    name = [n retain];
-    return self;
 }
 
 @end

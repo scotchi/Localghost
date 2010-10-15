@@ -20,12 +20,14 @@
 @interface Host : NSObject
 {
     NSString *name;
+    NSString *port;
     BOOL active;
 }
 
 - (id) initWithName: (NSString *) n;
 
 @property (readwrite, copy) NSString *name;
+@property (readwrite, copy) NSString *port;
 @property (readwrite, assign) BOOL active;
 
 @end
