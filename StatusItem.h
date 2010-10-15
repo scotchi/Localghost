@@ -16,6 +16,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "Host.h"
 
 @class SFAuthorization;
 @class PreferenceController;
@@ -34,6 +35,7 @@
 + (BOOL) runPrivileged: (NSString *) command arguments: (NSArray *) args;
 + (BOOL) checkHelperPermissions: (NSString *) helper;
 + (BOOL) setHelperPermissions: (NSString *) helper;
++ (BOOL) setHostActive: (Host *) host state: (BOOL) active;
 
 - (StatusItem *) init;
 - (void) createMenu;

@@ -107,6 +107,37 @@ static SFAuthorization *authorization = nil;
                         arguments: [NSArray arrayWithObjects: @"4755", helper, nil]]);
 }
 
++ (BOOL) setHostActive: (Host *) host state: (BOOL) active
+{
+    NSString *helper =
+        [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"LocalghostHelper"];
+
+    // If the helper is already owned by root and setuid, or if we can
+    // successfully set it to such, then run the helper.
+
+    if([StatusItem checkHelperPermissions: helper] || [StatusItem setHelperPermissions: helper])
+    {
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath: helper];
+
+        NSString *mode = active ? @"--enable" : @"--disable";
+
+        NSArray *arguments = ([[host port] length] > 0) ?
+            [NSArray arrayWithObjects: mode, [host name], [host port], nil] :
+            [NSArray arrayWithObjects: mode, [host name], nil];
+
+        [task setArguments: arguments];
+        [task launch];
+        [task waitUntilExit];
+        [task release];
+        [host setActive: active];
+
+        return YES;
+    }
+
+    return NO;
+}
+
 - (StatusItem *) init
 {
     [super init];
@@ -226,29 +257,7 @@ static SFAuthorization *authorization = nil;
         }
     }
 
-    NSString *helper =
-        [[NSBundle mainBundle] pathForAuxiliaryExecutable: @"LocalghostHelper"];
-
-    // If the helper is already owned by root and setuid, or if we can
-    // successfully set it to such, then run the helper.
-
-    if([StatusItem checkHelperPermissions: helper] || [StatusItem setHelperPermissions: helper])
-    {
-        NSTask *task = [[NSTask alloc] init];
-        [task setLaunchPath: helper];
-
-        NSString *mode = active ? @"--enable" : @"--disable";
-
-        NSArray *arguments = ([[host port] length] > 0) ?
-            [NSArray arrayWithObjects: mode, [host name], [host port], nil] :
-            [NSArray arrayWithObjects: mode, [host name], nil];
-
-        [task setArguments: arguments];
-        [task launch];
-        [task waitUntilExit];
-        [task release];
-        [host setActive: active];
-    }
+    [StatusItem setHostActive:host state:active];
 }
 
 - (PreferenceController *) preferences
