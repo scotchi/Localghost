@@ -17,6 +17,7 @@
 
 #import "PreferenceController.h"
 #import "Host.h"
+#import "StatusItem.h"
 
 #define PREFERENCES_FILE \
     [@"~/Library/Preferences/net.scotchi.Localghost.plist" stringByExpandingTildeInPath]
@@ -80,6 +81,17 @@
 
 - (IBAction) removeHost: (id) sender
 {
+    // Deactivate items being removed.
+
+    NSArray *rows = [hostsController selectedObjects];
+
+    for(NSUInteger i = 0; i < [rows count]; i++)
+    {
+        [StatusItem setHostActive: [rows objectAtIndex: i] state: NO];
+    }
+
+    // Now remove them from display.
+
     [hostsController remove: sender];
     [self save];
 }
