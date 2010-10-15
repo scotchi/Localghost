@@ -42,6 +42,7 @@
 - (IBAction) addHostCancel: (id) sender;
 - (IBAction) openOnLoginClicked: (id) sender;
 - (IBAction) proxyRequestsClicked: (id) sender;
+- (IBAction) ok: (id) sender;
 - (void) save;
 - (void) load;
 - (void) activateHosts: (NSDictionary *) allHosts;

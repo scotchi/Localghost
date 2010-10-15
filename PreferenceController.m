@@ -108,6 +108,12 @@
     [portTextField setEnabled: [sender state] == NSOnState];
 }
 
+- (IBAction) ok: (id) sender
+{
+    [[self window] orderOut: sender];
+    [self save];
+}
+
 - (void) save
 {
     NSMutableArray *values = [[NSMutableArray alloc] init];
