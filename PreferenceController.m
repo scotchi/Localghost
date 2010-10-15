@@ -59,7 +59,7 @@
 
 - (IBAction) addHostOk: (id) sender
 {
-    Host *host = [[Host alloc] initWithName: [addHostTextField stringValue]];
+    Host *host = [[Host alloc] initWithName: [hostTextField stringValue]];
     [host setPort: [portTextField stringValue]];
     [hostsController addObject: host];
     [host release];

@@ -25,7 +25,7 @@
     IBOutlet NSArrayController *hostsController;
     IBOutlet NSButton *openOnLoginButton;
     IBOutlet NSWindow *addHostSheet;
-    IBOutlet NSTextField *addHostTextField;
+    IBOutlet NSTextField *hostTextField;
     IBOutlet NSTextField *portTextField;
 }
 
