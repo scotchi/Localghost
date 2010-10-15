@@ -236,9 +236,14 @@ static SFAuthorization *authorization = nil;
     {
         NSTask *task = [[NSTask alloc] init];
         [task setLaunchPath: helper];
-        [task setArguments:
-                  [NSArray arrayWithObjects: (active ? @"--enable" : @"--disable"),
-                           [sender title], nil]];
+
+        NSString *mode = active ? @"--enable" : @"--disable";
+
+        NSArray *arguments = ([[host port] length] > 0) ?
+            [NSArray arrayWithObjects: mode, [host name], [host port], nil] :
+            [NSArray arrayWithObjects: mode, [host name], nil];
+
+        [task setArguments: arguments];
         [task launch];
         [task waitUntilExit];
         [task release];
