@@ -107,7 +107,7 @@ static void create_proxy(const char *host, int port)
         return;
     }
 
-    fprintf(config_file, "<VirtualHost *:80>\n");
+    fprintf(config_file, "<VirtualHost 127.0.0.1:80>\n");
     fprintf(config_file, "\tServerName %s\n", host);
     fprintf(config_file, "\tProxyPass / http://localhost:%i/\n", port);
     fprintf(config_file, "\tProxyPassReverse http://localhost:%i/ /\n", port);
