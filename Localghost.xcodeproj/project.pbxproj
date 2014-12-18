@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,7 @@
 		D2B4077911A8F7B100829042 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077811A8F7B100829042 /* SecurityFoundation.framework */; };
 		D2B4078011A911F900829042 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B4077F11A911F900829042 /* Security.framework */; };
 		D2B407CB11A9132A00829042 /* LocalghostHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = D2B407CA11A9132A00829042 /* LocalghostHelper.c */; };
-		D2B408C911A9FCAD00829042 /* LocalghostHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = D2B407C411A9130B00829042 /* LocalghostHelper */; };
+		D2B408C911A9FCAD00829042 /* LocalghostHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = D2B407C411A9130B00829042 /* LocalghostHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D2B408E611AA1C5200829042 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B408E511AA1C5200829042 /* Preferences.xib */; };
 		D2B408EF11AA1D3D00829042 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B408EE11AA1D3D00829042 /* PreferenceController.m */; };
 		D2B4093311AA7EA000829042 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4093211AA7EA000829042 /* Host.m */; };
@@ -224,9 +224,16 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Localghost" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Localghost */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -306,6 +313,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -323,7 +331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -337,26 +345,24 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -380,7 +386,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
