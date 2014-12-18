@@ -137,7 +137,7 @@
 
     if(![preferences writeToFile: PREFERENCES_FILE atomically: YES])
     {
-        NSLog(@"Could not save to %s", PREFERENCES_FILE);
+        NSLog(@"Could not save to %@", PREFERENCES_FILE);
     }
 
     [preferences release];
