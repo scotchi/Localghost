@@ -349,9 +349,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -361,8 +362,9 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PREBINDING = NO;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};
