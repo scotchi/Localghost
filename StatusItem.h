@@ -21,7 +21,7 @@
 @class SFAuthorization;
 @class PreferenceController;
 
-@interface StatusItem : NSObject
+@interface StatusItem : NSObject<NSMenuDelegate>
 {
     NSStatusItem *item;
     NSMenu *menu;
